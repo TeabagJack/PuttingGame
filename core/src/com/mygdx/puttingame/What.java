@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g3d.utils.FirstPersonCameraController;
 import com.badlogic.gdx.graphics.g3d.utils.MeshBuilder;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.math.Vector3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ public class What extends ApplicationAdapter {
     public Mesh sphereMesh;
     private ShaderProgram shader;
     private ShaderProgram shader2;
-    private Vector3 lightDirection;
+    //private Vector3 lightDirection;
     private FirstPersonCameraController controller;
 
 
@@ -80,11 +79,12 @@ public class What extends ApplicationAdapter {
         cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         cam.position.set(10f,10f,10f);
         cam.lookAt(10f,10f,10f);
-        cam.near = 1f;
-        cam.far = 3000f;
+        cam.near = 0.1f;
+        cam.far = 300f;
         cam.update();
 
-        lightDirection = new Vector3(3,6f,9f);
+
+       // lightDirection = new Vector3(3f,6f, 9f);
 
         controller = new FirstPersonCameraController(cam);
         Gdx.input.setInputProcessor(controller);
@@ -108,7 +108,7 @@ public class What extends ApplicationAdapter {
         shader2.begin();
 
         shader2.setUniformMatrix("viewProj", cam.combined);
-        shader2.setUniformf("lightDirection", lightDirection);
+       // shader2.setUniformf("lightDirection", lightDirection);
 
 
 
@@ -123,7 +123,7 @@ public class What extends ApplicationAdapter {
 
         shader.begin();
         shader.setUniformMatrix("viewProj", cam.combined);
-        //shader.setUniformf("lightDirection", lightDirection);
+      //  shader.setUniformf("lightDirection", lightDirection);
 
         for (Entity e : entities){
 
